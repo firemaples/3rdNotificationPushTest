@@ -12,8 +12,11 @@ object JPushManager {
         JPushInterface.init(context)
     }
 
+    fun queryRegistrationID(context: Context): String =
+        JPushInterface.getRegistrationID(context)
+
     fun onConnected(context: Context) {
-        val regId = JPushInterface.getRegistrationID(context)
+        val regId = queryRegistrationID(context)
         PushManager.onReceivedRegId(PushService.JPush, regId)
     }
 

@@ -20,6 +20,12 @@ class GetuiMessageService : GTIntentService() {
         logger.info("ClientId: ${PushManager.getInstance().getClientid(context)}")
     }
 
+    /**
+     * Data message
+     *
+     * Example:
+     * onReceiveMessageData(), msg: {messageId: cd488ff2f1d74b0ebab68c12cbbe96ab, taskId: GT_0101_6c2443d5e0fe259650736a44573c1399, payloadId: cd488ff2f1d74b0ebab68c12cbbe96ab:GT_0101_6c2443d5e0fe259650736a44573c1399, payloadSize: 36}
+     */
     override fun onReceiveMessageData(context: Context?, msg: GTTransmitMessage?) {
         logger.info("onReceiveMessageData(), msg: ${msg.toString()}")
 
@@ -41,6 +47,12 @@ class GetuiMessageService : GTIntentService() {
         logger.info("onReceiveCommandResult(), cmdMessage: $cmdMessage")
     }
 
+    /**
+     * General message
+     *
+     * Example:
+     * onNotificationMessageArrived(), msg: {messageId: 261258d0e166413b9a16f1ee9426b6d5, taskId: TEST_0101_aaf21cfa62350c22f18c9218b2e2bdd0, title: TestTitle, content: TestContent}
+     */
     override fun onNotificationMessageArrived(context: Context?, msg: GTNotificationMessage?) {
         logger.info("onNotificationMessageArrived(), msg: ${msg.toString()}")
     }

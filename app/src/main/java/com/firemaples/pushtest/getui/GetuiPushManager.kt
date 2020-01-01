@@ -18,6 +18,9 @@ object GetuiPushManager {
         }
     }
 
+    fun queryClientId(context: Context): String =
+        com.igexin.sdk.PushManager.getInstance().getClientid(context)
+
     fun onReceiveClientId(clientId: String) {
         PushManager.onReceivedRegId(PushService.Getui, clientId)
     }
