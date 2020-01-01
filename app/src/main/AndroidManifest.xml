@@ -3,9 +3,9 @@
         xmlns:tools="http://schemas.android.com/tools"
         package="com.firemaples.pushtest">
 
-    <!--    <uses-permission-->
-    <!--            android:name="android.permission.READ_PHONE_STATE"-->
-    <!--            tools:node="remove" />-->
+    <uses-permission
+            android:name="android.permission.READ_PHONE_STATE"
+            tools:node="remove" />
 
     <application
             android:name="com.firemaples.pushtest.CoreApplication"
@@ -55,6 +55,61 @@
             </intent-filter>
         </receiver>
         <!-- JPush components end -->
+
+        <!-- Baidu push components -->
+        <!-- 用于接收系统消息以保证PushService正常运行 -->
+        <receiver
+                android:name="com.baidu.android.pushservice.PushServiceReceiver"
+                android:process=":bdservice_v1">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="com.baidu.android.pushservice.action.notification.SHOW" />
+                <!-- 以下四项为可选的action声明，可大大提高service存活率和消息到达速度 -->
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+        <!-- Push服务接收客户端发送的各种请求-->
+        <receiver
+                android:name="com.baidu.android.pushservice.RegistrationReceiver"
+                android:process=":bdservice_v1">
+            <intent-filter>
+                <action android:name="com.baidu.android.pushservice.action.METHOD" />
+                <action android:name="com.baidu.android.pushservice.action.BIND_SYNC" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        <service
+                android:name="com.baidu.android.pushservice.PushService"
+                android:exported="true"
+                android:process=":bdservice_v1">
+            <intent-filter>
+                <action android:name="com.baidu.android.pushservice.action.PUSH_SERVICE" />
+            </intent-filter>
+        </service>
+
+        <!-- 4.4版本新增的CommandService声明，提升小米和魅族手机上的实际推送到达率 -->
+        <service
+                android:name="com.baidu.android.pushservice.CommandService"
+                android:exported="true" />
+
+        <receiver android:name=".baidu.BaiduPushReceiver">
+            <intent-filter>
+                <!-- 接收push消息 -->
+                <action android:name="com.baidu.android.pushservice.action.MESSAGE" />
+                <!-- 接收bind、setTags等method的返回结果-->
+                <action android:name="com.baidu.android.pushservice.action.RECEIVE" />
+                <!-- 接收通知点击事件，和通知自定义内容 -->
+                <action android:name="com.baidu.android.pushservice.action.notification.CLICK" />
+            </intent-filter>
+        </receiver>
+        <!-- Baidu push components end -->
 
     </application>
 

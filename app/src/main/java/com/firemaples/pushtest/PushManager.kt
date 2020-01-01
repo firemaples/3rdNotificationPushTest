@@ -1,6 +1,7 @@
 package com.firemaples.pushtest
 
 import android.content.Context
+import com.firemaples.pushtest.baidu.BaiduPushManager
 import com.firemaples.pushtest.getui.GetuiPushManager
 import com.firemaples.pushtest.jpush.JPushManager
 import com.google.gson.Gson
@@ -12,6 +13,7 @@ object PushManager {
     fun init(context: Context) {
         GetuiPushManager.init(context)
         JPushManager.init(context)
+        BaiduPushManager.init(context)
     }
 
     fun onReceivedRegId(pushService: PushService, regId: String) {
@@ -21,16 +23,21 @@ object PushManager {
     fun onReceiveData(pushService: PushService, payload: String) {
         logger.debug("onReceiveData(), pushService: $pushService, payload: $payload")
 
-        val data = Gson().fromJson<MessageData>(payload, MessageData::class.java)
-        when (data.key) {
-            "user" -> NetworkTester.test(data.value.toString())
+        try {
+            val data = Gson().fromJson<MessageData>(payload, MessageData::class.java)
+            when (data.key) {
+                "user" -> NetworkTester.test(data.value.toString())
+            }
+        } catch (e: Exception) {
+            logger.error("", e)
         }
     }
 }
 
 enum class PushService {
     Getui,
-    JPush
+    JPush,
+    Baidu,
 }
 
 class MessageData {

@@ -6,6 +6,9 @@ import cn.jpush.android.api.JPushInterface
 import com.firemaples.pushtest.PushManager
 import com.firemaples.pushtest.PushService
 
+/**
+ * https://www.jiguang.cn/jpush2/#/app/bf93ceac2505f286583fc8e4/push_form/custom
+ */
 object JPushManager {
     fun init(context: Context) {
         JPushInterface.setDebugMode(true)

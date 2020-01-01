@@ -6,6 +6,9 @@ import com.firemaples.pushtest.PushService
 import com.igexin.sdk.message.GTTransmitMessage
 import java.nio.charset.Charset
 
+/**
+ * https://dev.getui.com/dos5.0/#/message/70368744427948/customPush
+ */
 object GetuiPushManager {
     fun init(context: Context) {
         with(com.igexin.sdk.PushManager.getInstance()) {

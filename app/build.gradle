@@ -32,6 +32,8 @@ android {
                 /* JPush Config end */
         ]
 
+        buildConfigField("String", "BAIDU_PUSH_KEY", "\"GZ5Q74meMG0Tii2bpodxFrIg\"")
+
     }
     buildTypes {
         release {
