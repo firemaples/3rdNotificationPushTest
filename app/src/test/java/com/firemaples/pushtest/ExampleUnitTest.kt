@@ -1,4 +1,4 @@
-package com.firemaples.getuitest
+package com.firemaples.pushtest
 
 import org.junit.Test
 

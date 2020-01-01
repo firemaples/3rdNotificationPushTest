@@ -1,4 +1,4 @@
-package com.firemaples.getuitest
+package com.firemaples.pushtest
 
 import android.util.Log
 
@@ -25,9 +25,11 @@ class Logger(val tag: String) {
 class LoggerFactory() {
     companion object {
         @JvmStatic
-        fun getLogger(tag: String): Logger = Logger(tag)
+        fun getLogger(tag: String): Logger =
+            Logger(tag)
 
         @JvmStatic
-        fun getLogger(clazz: Class<*>): Logger = Logger(clazz)
+        fun getLogger(clazz: Class<*>): Logger =
+            Logger(clazz)
     }
 }

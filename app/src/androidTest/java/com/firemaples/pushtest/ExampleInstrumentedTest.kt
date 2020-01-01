@@ -1,4 +1,4 @@
-package com.firemaples.getuitest
+package com.firemaples.pushtest
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

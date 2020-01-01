@@ -1,4 +1,4 @@
-package com.firemaples.getuitest
+package com.firemaples.pushtest
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

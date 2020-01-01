@@ -1,6 +1,8 @@
-package com.firemaples.getuitest
+package com.firemaples.pushtest.getui
 
 import android.content.Context
+import com.firemaples.pushtest.Logger
+import com.firemaples.pushtest.LoggerFactory
 import com.google.gson.Gson
 import com.igexin.sdk.GTIntentService
 import com.igexin.sdk.PushManager
@@ -11,7 +13,10 @@ import com.workdo.networktester.NetworkTester
 import java.nio.charset.Charset
 
 class GetuiMessageService : GTIntentService() {
-    private val logger: Logger = LoggerFactory.getLogger(GetuiMessageService::class.java)
+    private val logger: Logger =
+        LoggerFactory.getLogger(
+            GetuiMessageService::class.java
+        )
 
     override fun onReceiveServicePid(context: Context?, pid: Int) {
         logger.info("onReceiveServicePid(), pid: $pid")

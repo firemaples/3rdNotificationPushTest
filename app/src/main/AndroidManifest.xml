@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        package="com.firemaples.getuitest">
+        package="com.firemaples.pushtest">
 
     <uses-permission
             android:name="android.permission.READ_PHONE_STATE"
             tools:node="remove" />
 
     <application
-            android:name=".CoreApplication"
+            android:name="com.firemaples.pushtest.CoreApplication"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
@@ -16,7 +16,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.firemaples.pushtest.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,12 +25,12 @@
         </activity>
 
         <service
-                android:name=".GetuiPushService"
+                android:name=".getui.GetuiPushService"
                 android:exported="true"
                 android:label="PushService"
                 android:process=":pushservice" />
         <service
-                android:name=".GetuiMessageService"
+                android:name=".getui.GetuiMessageService"
                 android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 
