@@ -3,9 +3,9 @@
         xmlns:tools="http://schemas.android.com/tools"
         package="com.firemaples.pushtest">
 
-    <uses-permission
-            android:name="android.permission.READ_PHONE_STATE"
-            tools:node="remove" />
+    <!--    <uses-permission-->
+    <!--            android:name="android.permission.READ_PHONE_STATE"-->
+    <!--            tools:node="remove" />-->
 
     <application
             android:name="com.firemaples.pushtest.CoreApplication"
@@ -24,14 +24,38 @@
             </intent-filter>
         </activity>
 
+        <!-- Getui components -->
         <service
                 android:name=".getui.GetuiPushService"
                 android:exported="true"
                 android:label="PushService"
-                android:process=":pushservice" />
+                android:process=":getuipushservice" />
         <service
                 android:name=".getui.GetuiMessageService"
                 android:permission="android.permission.BIND_JOB_SERVICE" />
+        <!-- Getui components end -->
+
+        <!-- JPush components -->
+        <service
+                android:name=".jpush.JPushService"
+                android:enabled="true"
+                android:exported="false"
+                android:process=":jpushcore">
+            <intent-filter>
+                <action android:name="cn.jiguang.user.service.action" />
+            </intent-filter>
+        </service>
+        <receiver
+                android:name=".jpush.JPushReceiver"
+                android:enabled="true"
+                android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />
+                <category android:name="${applicationId}"></category>
+            </intent-filter>
+        </receiver>
+        <!-- JPush components end -->
+
     </application>
 
 </manifest>

@@ -18,13 +18,20 @@ android {
             abiFilters "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
         }
 
-        /* Getui Config */
         manifestPlaceholders = [
+                /* Getui Config */
                 GETUI_APP_ID    : "Ldn9q3PGvL6pGGzPfhrIE4",
                 GETUI_APP_KEY   : "0TtaYLbg9h51ZoILAQcR3A",
-                GETUI_APP_SECRET: "oJZ9QmtRhx9QnyrmcMQoV1"
+                GETUI_APP_SECRET: "oJZ9QmtRhx9QnyrmcMQoV1",
+                /* Getui Config end */
+
+                /* JPush Config */
+                JPUSH_PKGNAME : applicationId,
+                JPUSH_APPKEY : "bf93ceac2505f286583fc8e4", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+                /* JPush Config end */
         ]
-        /* Getui Config end */
+
     }
     buildTypes {
         release {
@@ -49,6 +56,10 @@ dependencies {
 
     /* Getui GooglePlay version */
     implementation 'com.getui:sdk-for-google-play:4.3.8.0'
+
+    /* JPush */
+    implementation 'cn.jiguang.sdk:jpush:3.5.4'  // 此处以JPush 3.5.4 版本为例。
+    implementation 'cn.jiguang.sdk:jcore:2.2.4'  // 此处以JCore 2.2.4 版本为例。
 
     implementation project(path: ':networktester')
     api "com.google.code.gson:gson:2.4"

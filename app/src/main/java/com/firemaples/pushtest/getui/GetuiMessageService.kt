@@ -3,14 +3,11 @@ package com.firemaples.pushtest.getui
 import android.content.Context
 import com.firemaples.pushtest.Logger
 import com.firemaples.pushtest.LoggerFactory
-import com.google.gson.Gson
 import com.igexin.sdk.GTIntentService
 import com.igexin.sdk.PushManager
 import com.igexin.sdk.message.GTCmdMessage
 import com.igexin.sdk.message.GTNotificationMessage
 import com.igexin.sdk.message.GTTransmitMessage
-import com.workdo.networktester.NetworkTester
-import java.nio.charset.Charset
 
 class GetuiMessageService : GTIntentService() {
     private val logger: Logger =
@@ -27,17 +24,13 @@ class GetuiMessageService : GTIntentService() {
         logger.info("onReceiveMessageData(), msg: ${msg.toString()}")
 
         if (msg != null) {
-            val result = msg.payload.toString(Charset.defaultCharset())
-            logger.info("payload: $result")
-            val data = Gson().fromJson<MessageData>(result, MessageData::class.java)
-            when (data.key) {
-                "user" -> NetworkTester.test(data.value.toString())
-            }
+            GetuiPushManager.onReceiveCustomMessage(msg)
         }
     }
 
     override fun onReceiveClientId(context: Context?, clientId: String?) {
         logger.info("onReceiveClientId(), clientId: $clientId")
+        if (clientId != null) GetuiPushManager.onReceiveClientId(clientId)
     }
 
     override fun onReceiveOnlineState(context: Context?, online: Boolean) {
@@ -67,8 +60,3 @@ fun GTCmdMessage?.toString(): String =
 fun GTNotificationMessage?.toString(): String =
     this?.let { "{messageId: ${this.messageId}, taskId: ${this.taskId}, title: ${this.title}, content: ${this.content}}" }
         ?: "null"
-
-class MessageData {
-    val key: String? = null
-    val value: String? = null
-}
