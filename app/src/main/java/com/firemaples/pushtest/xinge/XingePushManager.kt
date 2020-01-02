@@ -35,7 +35,7 @@ object XingePushManager {
             }
 
             override fun onFail(data: Any?, errorCode: Int, msg: String?) {
-                logger.debug("Register failed, data: $data, errorCode: $errorCode, msg: $msg")
+                logger.warn("Register failed, data: $data, errorCode: $errorCode, msg: $msg")
             }
 
         })
