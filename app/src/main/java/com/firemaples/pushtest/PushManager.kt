@@ -4,6 +4,7 @@ import android.content.Context
 import com.firemaples.pushtest.baidu.BaiduPushManager
 import com.firemaples.pushtest.getui.GetuiPushManager
 import com.firemaples.pushtest.jpush.JPushManager
+import com.firemaples.pushtest.xinge.XingePushManager
 import com.google.gson.Gson
 import com.workdo.networktester.NetworkTester
 
@@ -14,6 +15,7 @@ object PushManager {
         GetuiPushManager.init(context)
         JPushManager.init(context)
         BaiduPushManager.init(context)
+        XingePushManager.init(context)
     }
 
     fun onReceivedRegId(pushService: PushService, regId: String) {
@@ -38,6 +40,7 @@ enum class PushService {
     Getui,
     JPush,
     Baidu,
+    Xinge,
 }
 
 class MessageData {
